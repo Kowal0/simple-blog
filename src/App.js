@@ -1,16 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
-const callApi = async () => {
-  const response = await fetch('/api/test.js');
-  const json = await response.json();
-
-  console.log(json);
-
-};
-
 function App() {
+    React.useEffect(() => {
+        const checkUser = async () => {
+            const response = await axios('/api/user');
+            console.log(response);
+        };
+
+        checkUser();
+    }, []);
+
   return (
     <div className="App">
       <header className="App-header">

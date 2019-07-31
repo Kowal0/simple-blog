@@ -1,6 +1,8 @@
 const axios = require('axios');
+const cookie = require('cookie');
+const app = require('express')();
 
-module.exports = async (req, res) => {
+app.get('*', async (req, res) => {
     const requestBody = {
         grant_type:'authorization_code',
         client_id: 'SQlewqkgLFSMwLKT9s5rtTHTwMt0Jq3L',
@@ -11,9 +13,11 @@ module.exports = async (req, res) => {
 
     try {
         const response = await axios.post('https://dev-dfeuc1-x.eu.auth0.com/oauth/token', requestBody);
-        res.status(200).send(response.data);
+        res.setHeader('Set-Cookie', cookie.serialize('jwt', response.data.id_token));
+        res.redirect('/');
     } catch (err) {
         res.status(500).json({error: err.message});
     }
-    
-};
+});
+
+module.exports = app;

@@ -15,10 +15,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onClick={callApi}>Call api</button>
+        <a href={`https://dev-dfeuc1-x.eu.auth0.com/login?client=SQlewqkgLFSMwLKT9s5rtTHTwMt0Jq3L&redirect_uri=http://localhost:3000/api/callback`}>
+            Login
+        </a>
       </header>
     </div>
   );
